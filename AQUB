@@ -1,0 +1,403 @@
+-- phpMyAdmin SQL Dump
+-- version 5.0.1
+-- https://www.phpmyadmin.net/
+--
+-- ホスト: localhost
+-- 生成日時: 2021 年 6 月 29 日 07:53
+-- サーバのバージョン： 5.7.28-0ubuntu0.18.04.4
+-- PHP のバージョン: 7.4.1
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- データベース: `AQUB`
+--
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `AQUB_answer`
+--
+
+CREATE TABLE `AQUB_answer` (
+  `id` int(255) NOT NULL,
+  `question_id` int(255) NOT NULL,
+  `date` datetime NOT NULL,
+  `text` varchar(255) NOT NULL,
+  `count_good` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- テーブルのデータのダンプ `AQUB_answer`
+--
+
+INSERT INTO `AQUB_answer` (`id`, `question_id`, `date`, `text`, `count_good`) VALUES
+(1, 1, '2021-06-29 10:17:23', '椅子にお金かけるのが一番ですかね？\r\n私は奮発して高いの買ったので今は快適ですよ～', 1),
+(2, 1, '2021-06-29 10:18:17', 'クッションとか下に置くとか？\r\n低反発のやつとか買ってみるのもアリかと', 2),
+(3, 2, '2021-06-29 10:18:36', 'お金がなさ過ぎて冷凍枝豆しか食ってない…', 4),
+(4, 2, '2021-06-29 10:18:55', 'ササミ一択', 1),
+(5, 3, '2021-06-29 10:19:18', '初めは不安でいっぱいだと思いますが、先輩方は結構助けてくれます。\r\nわからないことがあったらすぐに周りに頼りましょう。\r\nむしろわからないままにしておくのが一番危ないので…。\r\n不安だとは思いますが応援しています。', 3),
+(6, 3, '2021-06-29 10:19:47', '新卒は何もできないのが当たり前。\r\n当たって砕けるくらいがちょうどいい。', 4),
+(7, 3, '2021-06-29 10:20:05', 'エルダーさん次第ですが、初めのうちは丁寧に教えてくれると思いますので\r\n心配しなくても大丈夫ですよ～＾＾', 3);
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `AQUB_answer_board`
+--
+
+CREATE TABLE `AQUB_answer_board` (
+  `id` int(255) NOT NULL,
+  `user_id` int(255) NOT NULL,
+  `answer_id` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- テーブルのデータのダンプ `AQUB_answer_board`
+--
+
+INSERT INTO `AQUB_answer_board` (`id`, `user_id`, `answer_id`) VALUES
+(1, 2, 1),
+(2, 4, 2),
+(3, 5, 3),
+(4, 4, 4),
+(5, 1, 5),
+(6, 2, 6),
+(7, 6, 7);
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `AQUB_good_board`
+--
+
+CREATE TABLE `AQUB_good_board` (
+  `id` int(255) NOT NULL,
+  `date` datetime NOT NULL,
+  `user_id` int(255) NOT NULL,
+  `question_id` int(255) NOT NULL,
+  `answer_id` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- テーブルのデータのダンプ `AQUB_good_board`
+--
+
+INSERT INTO `AQUB_good_board` (`id`, `date`, `user_id`, `question_id`, `answer_id`) VALUES
+(1, '2021-06-29 10:29:27', 1, 1, 1),
+(2, '2021-06-29 10:29:41', 1, 1, 2),
+(3, '2021-06-29 10:29:56', 2, 1, 2),
+(4, '2021-06-29 10:31:17', 1, 2, 3),
+(5, '2021-06-29 10:31:31', 2, 2, 3),
+(6, '2021-06-29 10:32:08', 4, 2, 3),
+(7, '2021-06-29 10:32:20', 6, 2, 3),
+(8, '2021-06-29 10:36:00', 2, 2, 4),
+(10, '2021-06-29 10:39:16', 2, 3, 5),
+(11, '2021-06-29 10:39:34', 4, 3, 5),
+(12, '2021-06-29 10:39:47', 5, 3, 5),
+(13, '2021-06-29 10:40:24', 1, 3, 6),
+(14, '2021-06-29 10:40:44', 5, 3, 6),
+(15, '2021-06-29 10:40:53', 4, 3, 6),
+(16, '2021-06-29 10:41:08', 6, 3, 6),
+(17, '2021-06-29 10:45:42', 2, 3, 7),
+(18, '2021-06-29 10:46:01', 5, 3, 7),
+(19, '2021-06-29 10:46:13', 4, 3, 7),
+(20, '2021-06-29 10:53:18', 2, 1, 0),
+(21, '2021-06-29 10:53:32', 4, 1, 0),
+(22, '2021-06-29 10:54:06', 1, 2, 0),
+(23, '2021-06-29 10:54:18', 4, 2, 0),
+(24, '2021-06-29 10:54:30', 5, 2, 0),
+(25, '2021-06-29 10:54:41', 6, 2, 0),
+(26, '2021-06-29 10:56:05', 1, 3, 0),
+(27, '2021-06-29 10:56:18', 2, 3, 0),
+(28, '2021-06-29 10:56:29', 5, 3, 0),
+(29, '2021-06-29 10:56:38', 6, 3, 0),
+(30, '2021-06-29 10:56:57', 1, 4, 0),
+(31, '2021-06-29 10:57:12', 2, 4, 0),
+(32, '2021-06-29 10:57:22', 4, 4, 0),
+(33, '2021-06-29 10:57:32', 6, 4, 0);
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `AQUB_question`
+--
+
+CREATE TABLE `AQUB_question` (
+  `id` int(255) NOT NULL,
+  `date` datetime NOT NULL,
+  `user_id` int(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `Category` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+  `text` varchar(255) NOT NULL,
+  `count_good` int(255) NOT NULL,
+  `count_answer` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- テーブルのデータのダンプ `AQUB_question`
+--
+
+INSERT INTO `AQUB_question` (`id`, `date`, `user_id`, `title`, `Category`, `text`, `count_good`, `count_answer`) VALUES
+(1, '2021-06-29 10:05:23', 1, '＜急募＞腰が痛すぎて辛いんだが', '', 'リモートになってから座りっぱなしのせいで腰が痛くて困ってます。\r\n皆さん対策とかされてたりします？', 2, 2),
+(2, '2021-06-29 10:06:28', 2, '皆さんの酒の肴', '', '皆さんの最近の酒のお供を教えてくれると僕が喜びます。', 4, 2),
+(3, '2021-06-29 10:07:14', 4, 'やってけるか不安', '', '新卒一年目です。周りの同期がどんどん先に進んでる気がして自分がやっていけるか不安で仕方ないです。\r\n初めはみんなこんなものなのでしょうか。\r\n周りに遅れないように新卒のうちにやっておいた方がいいことなどあれば教えていただきたいです。', 4, 3),
+(4, '2021-06-29 10:07:57', 5, 'みんなが不満に思ってることを書くスレ', '', '大きな声では言えないけど、不満に思ってることってあったりします？', 4, 0),
+(5, '2021-06-29 10:23:16', 6, 'うちの上司がやばいんだけど', '', '上司が命令ばっかりしてきてマジうざい\r\n自分でやればいいのに', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `AQUB_report`
+--
+
+CREATE TABLE `AQUB_report` (
+  `id` int(255) NOT NULL,
+  `date` datetime NOT NULL,
+  `user_id` int(255) NOT NULL,
+  `question_id` int(255) NOT NULL,
+  `answer_id` int(255) NOT NULL,
+  `report_category` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- テーブルのデータのダンプ `AQUB_report`
+--
+
+INSERT INTO `AQUB_report` (`id`, `date`, `user_id`, `question_id`, `answer_id`, `report_category`) VALUES
+(1, '2021-06-29 10:27:13', 4, 5, 0, '');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `AQUB_user`
+--
+
+CREATE TABLE `AQUB_user` (
+  `id` int(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `user_Authority` int(1) NOT NULL,
+  `qustion_category` varchar(255) NOT NULL,
+  `question_answer` varchar(255) NOT NULL,
+  `date` datetime NOT NULL,
+  `Category1` varchar(255) NOT NULL,
+  `Category2` varchar(255) NOT NULL,
+  `Category3` varchar(255) NOT NULL,
+  `update_time` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- テーブルのデータのダンプ `AQUB_user`
+--
+
+INSERT INTO `AQUB_user` (`id`, `name`, `email`, `password`, `user_Authority`, `qustion_category`, `question_answer`, `date`, `Category1`, `Category2`, `Category3`, `update_time`) VALUES
+(1, 'example1', 'example1@example.co.jp', 'example1', 0, '', '', '2021-06-29 09:54:21', '', '', '', '2021-06-29 09:54:21'),
+(2, 'example2', 'example2@example.co.jp', 'example2', 0, '', '', '2021-06-29 09:58:40', '', '', '', '2021-06-29 09:58:40'),
+(3, 'admin', 'admin@example.co.jp', 'admin', 1, '', '', '2021-06-28 10:00:51', '', '', '', '2021-06-28 10:00:51'),
+(4, 'example3', 'example3@example.co.jp', 'example3', 0, '', '', '2021-06-29 10:03:27', '', '', '', '2021-06-29 10:03:27'),
+(5, 'example4', 'example4@example.co.jp', 'example4', 0, '', '', '2021-06-29 10:04:11', '', '', '', '2021-06-29 10:04:11'),
+(6, 'example5', 'example5@example.co.jp', 'example5', 0, '', '', '2021-06-29 10:25:15', '', '', '', '2021-06-29 10:25:15');
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `failed_jobs`
+--
+
+CREATE TABLE `failed_jobs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `connection` text COLLATE utf8_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- テーブルのデータのダンプ `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2014_10_12_100000_create_password_resets_table', 1),
+(3, '2019_08_19_000000_create_failed_jobs_table', 1);
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `users`
+--
+
+CREATE TABLE `users` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- ダンプしたテーブルのインデックス
+--
+
+--
+-- テーブルのインデックス `AQUB_answer`
+--
+ALTER TABLE `AQUB_answer`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- テーブルのインデックス `AQUB_answer_board`
+--
+ALTER TABLE `AQUB_answer_board`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- テーブルのインデックス `AQUB_good_board`
+--
+ALTER TABLE `AQUB_good_board`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- テーブルのインデックス `AQUB_question`
+--
+ALTER TABLE `AQUB_question`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- テーブルのインデックス `AQUB_report`
+--
+ALTER TABLE `AQUB_report`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- テーブルのインデックス `AQUB_user`
+--
+ALTER TABLE `AQUB_user`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- テーブルのインデックス `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- テーブルのインデックス `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- テーブルのインデックス `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- テーブルのインデックス `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
+-- ダンプしたテーブルのAUTO_INCREMENT
+--
+
+--
+-- テーブルのAUTO_INCREMENT `AQUB_answer`
+--
+ALTER TABLE `AQUB_answer`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- テーブルのAUTO_INCREMENT `AQUB_answer_board`
+--
+ALTER TABLE `AQUB_answer_board`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- テーブルのAUTO_INCREMENT `AQUB_good_board`
+--
+ALTER TABLE `AQUB_good_board`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+--
+-- テーブルのAUTO_INCREMENT `AQUB_question`
+--
+ALTER TABLE `AQUB_question`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- テーブルのAUTO_INCREMENT `AQUB_report`
+--
+ALTER TABLE `AQUB_report`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- テーブルのAUTO_INCREMENT `AQUB_user`
+--
+ALTER TABLE `AQUB_user`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- テーブルのAUTO_INCREMENT `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- テーブルのAUTO_INCREMENT `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- テーブルのAUTO_INCREMENT `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
